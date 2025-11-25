@@ -62,7 +62,7 @@ The system includes 4 controllers, supports JWT authentication, integrates with 
 6-SOURCE CODE
 
   GitHub Repository:
-  <Insert your GitHub repo URL here>
+  https://github.com/huseinbalci/SE4458-UniversityTuitionPaymentSystemAPI
 
 7-PROJECT DEMO VIDEO
 
