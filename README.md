@@ -56,11 +56,8 @@ The system includes 4 controllers, supports JWT authentication, integrates with 
 
 5-API DATA MODEL
 
-The ER diagram is included in the repository.
-
-Data Model PDF:
-<Insert link to the PDF in your repo>
-(Example: /docs/DataModel.pdf)
+  Data Model PDF:
+  https://github.com/huseinbalci/SE4458-UniversityTuitionPaymentSystemAPI/blob/master/UniversityTuitionAPI.pdf
     
 6-SOURCE CODE
 
