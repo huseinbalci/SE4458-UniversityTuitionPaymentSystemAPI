@@ -67,7 +67,7 @@ The system includes 4 controllers, supports JWT authentication, integrates with 
 7-PROJECT DEMO VIDEO
 
   Video Link:
-  <Insert your presentation/demo video link here>
+  https://www.youtube.com/watch?v=BaJOKNplXbw
 
 
 
