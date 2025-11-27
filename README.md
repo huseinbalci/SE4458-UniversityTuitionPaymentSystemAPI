@@ -36,23 +36,23 @@ The system includes 4 controllers, supports JWT authentication, integrates with 
 
 4-CONTROLLERS OVERVIEW
 
-  AuthController:
-    * Issues JWT tokens for authenticated users (Admin or Bank).
-    * Handles login.
+  4.1-AuthController:
+    - Issues JWT tokens for authenticated users (Admin or Bank).
+    - Handles login.
 
-  MobileController:
-    * Student tuition query (no authentication required).
-    * Students enter StudentNo to view tuition information.
+  4.2-MobileController:
+    - Student tuition query (no authentication required).
+    - Students enter StudentNo to view tuition information.
 
-  BankController:
-    * Pay tuition (no authentication required).
-    * Query tuition (JWT authentication required).
+  4.3-BankController:
+    - Pay tuition (no authentication required).
+    - Query tuition (JWT authentication required).
 
-  AdminController:
-    * Requires full JWT authentication.
-    * Admins can upload tuition data using a .csv file.
-    * Admins can add tuition manually.
-    * Admins can view all unpaid tuition records (with paging).
+  4.4-AdminController:
+    - Requires full JWT authentication.
+    - Admins can upload tuition data using a .csv file.
+    - Admins can add tuition manually.
+    - Admins can view all unpaid tuition records (with paging).
 
 5-API DATA MODEL
 
