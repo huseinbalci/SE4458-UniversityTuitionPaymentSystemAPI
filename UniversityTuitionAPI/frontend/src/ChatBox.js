@@ -14,6 +14,11 @@ export default function ChatBox() {
     const [sessionId] = useState(uuidv4());
     const messagesEndRef = useRef(null);
 
+    // Azure-ready environment variables
+    const CHAT_API_URL = process.env.REACT_APP_CHAT_API_URL || "http://localhost:3001/api/chat";
+    const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL || "http://localhost:5025/api/v1/auth/token";
+    const CSV_UPLOAD_URL = process.env.REACT_APP_CSV_UPLOAD_URL || "http://localhost:5025/api/v1/admin/add-tuition-batch";
+
     const adminIntents = [
         "add tuition", "add student", "add new tuition",
         "add tuition batch", "upload csv", "csv", "batch", "unpaid tuition"
@@ -60,7 +65,7 @@ export default function ChatBox() {
         }
 
         try {
-            const response = await fetch("http://localhost:3001/api/chat", {
+            const response = await fetch(CHAT_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,14 +79,13 @@ export default function ChatBox() {
             const data = await response.json();
             setMessages(prev => [...prev, { sender: "bot", text: data.output }]);
         } catch {
-            setMessages(prev => [...prev, { sender: "bot", text: "Bir hata oluştu." }]);
+            setMessages(prev => [...prev, { sender: "bot", text: "An error occurred." }]);
         }
     };
 
     const handleLogin = async (username, password) => {
-        const url = "http://localhost:5025/api/v1/auth/token";
         try {
-            const response = await fetch(url, {
+            const response = await fetch(AUTH_API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ Username: username, Password: password })
@@ -112,14 +116,11 @@ export default function ChatBox() {
         formData.append("file", uploadFile);
 
         try {
-            const response = await fetch(
-                "http://localhost:5025/api/v1/admin/add-tuition-batch",
-                {
-                    method: "POST",
-                    headers: { Authorization: `Bearer ${token}` },
-                    body: formData
-                }
-            );
+            const response = await fetch(CSV_UPLOAD_URL, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}` },
+                body: formData
+            });
 
             if (!response.ok) throw new Error();
             setMessages(prev => [...prev, { sender: "bot", text: "All tuitions added successfully." }]);
