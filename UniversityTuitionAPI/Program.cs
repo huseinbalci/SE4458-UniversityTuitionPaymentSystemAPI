@@ -82,11 +82,6 @@ using (var scope = app.Services.CreateScope())
     db.Database.EnsureCreated();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.MapGet("/", () => Results.Redirect("/swagger"));
-
 app.UseHttpsRedirection();
 
 app.UseCors("AllowFrontend");
