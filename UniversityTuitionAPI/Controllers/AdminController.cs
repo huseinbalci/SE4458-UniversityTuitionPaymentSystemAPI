@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniversityTuitionAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using UniversityTuitionAPI.Models;
 
 namespace UniversityTuitionAPI.Controllers
 {
@@ -17,7 +18,32 @@ namespace UniversityTuitionAPI.Controllers
         {
             _context = context;
         }
+        
+        [HttpPost("add-student")]
+        public IActionResult AddStudent([FromQuery] string studentNo, [FromQuery] string fullName)
+        {
+            if (string.IsNullOrWhiteSpace(studentNo) || string.IsNullOrWhiteSpace(fullName))
+                return BadRequest("StudentNo and FullName are required.");
 
+            var exists = _context.Student.Any(s => s.StudentNo == studentNo);
+            if (exists)
+                return Conflict($"Student with StudentNo '{studentNo}' already exists.");
+
+            _context.Student.Add(new Student
+            {
+                StudentNo = studentNo,
+                FullName = fullName
+            });
+
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                Status = "Success",
+                Message = $"Student '{studentNo}' added successfully."
+            });
+        }
+        
         [HttpPost("add-tuition")]
         public IActionResult AddTuition([FromQuery] string studentNo, [FromQuery] string term, [FromQuery] decimal totalAmount = 0)
         {
