@@ -5,13 +5,20 @@ using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Diagnostics;
 using UniversityTuitionAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --------------------
+// Services
+// --------------------
+
+// Database
 builder.Services.AddDbContext<UniversityDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
@@ -22,8 +29,10 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Controllers
 builder.Services.AddControllers();
 
+// JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -45,6 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -76,19 +86,94 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// --------------------
+// Ensure DB created
+// --------------------
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<UniversityDbContext>();
     db.Database.EnsureCreated();
 }
 
+// --------------------
+// Middleware
+// --------------------
 app.UseHttpsRedirection();
-
 app.UseCors("AllowFrontend");
-
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
+
+// Map API controllers
 app.MapControllers();
 
+// Serve React build (production)
+app.UseDefaultFiles(); // looks for index.html
+app.UseStaticFiles();  // serves wwwroot
+
+// Fallback for SPA routing
+app.MapFallbackToFile("index.html");
+
+// --------------------
+// Start Node.js AI server
+// --------------------
+var nodeServerPath = Path.Combine(AppContext.BaseDirectory, "server.js"); // must be copied to output folder
+
+if (!File.Exists(nodeServerPath))
+{
+    Console.WriteLine("server.js not found at: " + nodeServerPath);
+}
+else
+{
+    try
+    {
+        var nodeProcess = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "node",
+                Arguments = $"\"{nodeServerPath}\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            }
+        };
+
+        nodeProcess.OutputDataReceived += (s, e) =>
+        {
+            if (!string.IsNullOrEmpty(e.Data))
+                Console.WriteLine("[Node] " + e.Data);
+        };
+        nodeProcess.ErrorDataReceived += (s, e) =>
+        {
+            if (!string.IsNullOrEmpty(e.Data))
+                Console.WriteLine("[Node ERROR] " + e.Data);
+        };
+
+        nodeProcess.Start();
+        nodeProcess.BeginOutputReadLine();
+        nodeProcess.BeginErrorReadLine();
+
+        // Kill Node process on API exit
+        AppDomain.CurrentDomain.ProcessExit += (s, e) =>
+        {
+            if (!nodeProcess.HasExited)
+                nodeProcess.Kill();
+        };
+
+        Console.WriteLine("Node.js server started successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Failed to start Node.js server: " + ex.Message);
+    }
+}
+
+// --------------------
+// Run API
+// --------------------
 app.Run();
