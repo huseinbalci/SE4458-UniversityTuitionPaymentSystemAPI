@@ -10,12 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY
 
 if (!GROQ_API_KEY) {
     console.error("GROQ_API_KEY not set!");
     process.exit(1);
+} else {
+    console.log("GROQ_API_KEY loaded successfully");
 }
+
+console.log("AI server running...");
 
 const groq = new Groq({ apiKey: GROQ_API_KEY });
 
@@ -225,6 +229,7 @@ app.post("/api/chat", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`AI server running on http://localhost:${PORT}`);
+    console.log(`AI server running on port ${PORT}`);
 });
+
 

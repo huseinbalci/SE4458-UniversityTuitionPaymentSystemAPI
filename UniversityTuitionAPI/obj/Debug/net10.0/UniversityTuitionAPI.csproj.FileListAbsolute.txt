@@ -175,9 +175,7 @@ C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\bi
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\bin\Debug\net10.0\frontend\build\asset-manifest.json
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\bin\Debug\net10.0\frontend\build\manifest.json
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\bin\Debug\net10.0\UniversityTuitionAPI.staticwebassets.runtime.json
-C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\nh0a0f5e53-{0}-1kft3jgqvy-1kft3jgqvy.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\w3ajrhr6z7-{0}-1f2oqlqaa3-1f2oqlqaa3.gz
-C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\0e0ixj0tj6-{0}-tjlyzjxtlf-tjlyzjxtlf.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\zqynzacpbs-{0}-4bysstsvp2-4bysstsvp2.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\nlugz8v7wg-{0}-sl60c43r8o-sl60c43r8o.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\hlx39zlbuw-{0}-262km2gysz-262km2gysz.gz
@@ -188,3 +186,8 @@ C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\ob
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\fvbqbk8gfd-{0}-kmpxxtsv97-kmpxxtsv97.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\au9g6g80e0-{0}-uc4zytcq5t-uc4zytcq5t.gz
 C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\bin\Debug\net10.0\server.js
+C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\nh0a0f5e53-{0}-j6py4eipq7-j6py4eipq7.gz
+C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\0e0ixj0tj6-{0}-e8706ejw6w-e8706ejw6w.gz
+C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\bdf5t3t6is-{0}-f56yhifqb3-f56yhifqb3.gz
+C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\o61rd24myh-{0}-kmpxxtsv97-kmpxxtsv97.gz
+C:\Users\husei\Desktop\yasar\SE4458\UniversityTuitionAPI\UniversityTuitionAPI\obj\Debug\net10.0\compressed\00m7ovnfrm-{0}-x5lzhv2v47-x5lzhv2v47.gz
